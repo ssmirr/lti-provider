@@ -1,0 +1,27 @@
+{
+  "name": "lti-provider",
+  "version": "1.0.0",
+  "description": "simple express app working as lti provider",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ssmirr/lti-provider.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ssmirr/lti-provider/issues"
+  },
+  "homepage": "https://github.com/ssmirr/lti-provider#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "ims-lti": "^3.0.2"
+  }
+}
