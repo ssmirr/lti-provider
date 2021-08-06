@@ -52,9 +52,12 @@ app.get('/grade/:grade', (req, res) => {
 
     console.log('session.moodleData =>', session.moodleData, '\n\n');
 
-    session.moodleData.outcome_service.send_replace_result(grade / 100, (err, isValid) => {
+    // session.moodleData.outcome_service.send_replace_result(grade / 100, (err, isValid) => {
+    session.moodleData.outcome_service.send_replace_result_with_text(grade / 100, "Feedback line 1\n\n\nFeedback line 4", (err, isValid) => {
         if (!isValid)
             resp += `<br/>Update failed ${err}`;
+
+        console.log(err, isValid);
 
         res.send(resp);
     });
