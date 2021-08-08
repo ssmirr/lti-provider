@@ -7,6 +7,8 @@ const lti = require("ims-lti");
 const app = express();
 app.set('view engine', 'ejs');
 
+let ltiSession = {};
+
 app.set('trust proxy', 1) // trust first proxy
 //app.use(session({
 //    secret: 'keyboard cat',
@@ -37,11 +39,11 @@ app.post("/assignment", (req, res) => {
             return;
         }
 
-        req.session.moodleData = moodleData;
+        ltiSession[req.session.id] = moodleData;
 
         console.log('moodleData.body =>', moodleData.body);
 
-        res.render('assignment', { sessionID: req.session.id, user: moodleData.body.ext_user_username });
+        res.render('assignment', { user: moodleData.body.ext_user_username });
     });
 
 });
@@ -60,10 +62,10 @@ app.get('/grade/:grade', (req, res) => {
         resp = `${grade} sounds reasonable, sure.`;
     }
 
-    console.log('session.moodleData =>', session.moodleData, '\n\n');
+    console.log('session.moodleData =>', ltiSession[req.session.id].moodleData, '\n\n');
 
-    // session.moodleData.outcome_service.send_replace_result(grade / 100, (err, isValid) => {
-    req.session.moodleData.outcome_service.send_replace_result_with_text(grade / 100, "Feedback line 1\n\n\nFeedback line 4", (err, isValid) => {
+    // ltiSession[req.session.id].outcome_service.send_replace_result(grade / 100, (err, isValid) => {
+    ltiSession[req.session.id].outcome_service.send_replace_result_with_text(grade / 100, "Feedback line 1\n\n\nFeedback line 4", (err, isValid) => {
         if (!isValid)
             resp += `<br/>Update failed ${err}`;
 
