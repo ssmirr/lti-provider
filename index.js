@@ -9,7 +9,7 @@ app.set('view engine', 'ejs');
 
 let ltiSession = {};
 
-app.set('trust proxy', 1) // trust first proxy
+app.set('trust proxy'); // trust first proxy
 //app.use(session({
 //    secret: 'keyboard cat',
 //    resave: false,
@@ -62,7 +62,7 @@ app.get('/grade/:grade', (req, res) => {
         resp = `${grade} sounds reasonable, sure.`;
     }
 
-    console.log('session.moodleData =>', ltiSession[req.session.id].moodleData, '\n\n');
+    console.log('ltiSession[req.session.id] =>', ltiSession[req.session.id], '\n\n');
 
     // ltiSession[req.session.id].outcome_service.send_replace_result(grade / 100, (err, isValid) => {
     ltiSession[req.session.id].outcome_service.send_replace_result_with_text(grade / 100, "Feedback line 1\n\n\nFeedback line 4", (err, isValid) => {
