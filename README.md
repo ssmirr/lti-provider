@@ -5,7 +5,7 @@ simple express app working as lti provider
 echo "hello"
 ```
 
-
+Activity: Add a h1 header showing "Hello Docable!" on top of the paragraph:
 
 ```|{type: 'playground', grade_this: true, grade_this_check: "$('div.my-5').text().includes('DOCABLE')" }
 <!DOCTYPE html>
@@ -17,8 +17,6 @@ echo "hello"
 <body>
 
 <div class="w-50 mx-auto my-5">
-
-    <h1 style="background-color:DodgerBlue;">Hello World</h1>
 
     <p style="background-color:Tomato;" id="paragraph">
     Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
